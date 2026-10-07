@@ -1,0 +1,73 @@
+﻿case,condition,target,project,expected_materials,answer,material_pass,relation_check_pass,wrong_suppliers,eos,hit_limit
+original,graph_shared,1,ORION,['copper'],Copper.,True,True,[],True,False
+original,graph_shared,2,LYRA,['silver'],Copper.,False,False,[],True,False
+original,graph_shared,3,NOVA,"['copper', 'silver']","According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+original,graph_continuous,1,ORION,['copper'],Copper.,True,True,[],True,False
+original,graph_continuous,2,LYRA,['silver'],Copper.,False,False,[],True,False
+original,graph_continuous,3,NOVA,"['copper', 'silver']","According to the provided documents, NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+original,ordinary_sequence,1,ORION,['copper'],Copper,True,True,[],True,False
+original,ordinary_sequence,2,LYRA,['silver'],"According to Document 2, Project LYRA uses the material supplied by BETA, which is silver.",True,True,[],True,False
+original,ordinary_sequence,3,NOVA,"['copper', 'silver']","According to Document 3, Project NOVA combines copper and silver.",True,True,[],True,False
+swap_materials,graph_shared,1,ORION,['silver'],Copper.,False,False,[],True,False
+swap_materials,graph_shared,2,LYRA,['copper'],Copper.,True,True,[],True,False
+swap_materials,graph_shared,3,NOVA,"['silver', 'copper']","According to the provided documents, Project NOVA combines copper supplied by BETA and silver supplied by ALPHA.",True,True,[],True,False
+swap_materials,graph_continuous,1,ORION,['silver'],Copper.,False,False,[],True,False
+swap_materials,graph_continuous,2,LYRA,['copper'],Copper.,True,True,[],True,False
+swap_materials,graph_continuous,3,NOVA,"['silver', 'copper']","According to the provided documents, NOVA combines silver supplied by BETA and copper supplied by ALPHA.",True,True,[],True,False
+swap_materials,ordinary_sequence,1,ORION,['silver'],Silver.,True,True,[],True,False
+swap_materials,ordinary_sequence,2,LYRA,['copper'],"According to Document 2, Project LYRA uses copper.",True,True,[],True,False
+swap_materials,ordinary_sequence,3,NOVA,"['silver', 'copper']","According to Document 3, Project NOVA combines silver and copper.",True,True,[],True,False
+rename_projects,graph_shared,1,CEDAR,['copper'],Copper.,True,True,[],True,False
+rename_projects,graph_shared,2,MAPLE,['silver'],Copper.,False,False,[],True,False
+rename_projects,graph_shared,3,BIRCH,"['copper', 'silver']","According to the provided documents, Project BIRCH combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+rename_projects,graph_continuous,1,CEDAR,['copper'],Copper.,True,True,[],True,False
+rename_projects,graph_continuous,2,MAPLE,['silver'],Copper.,False,False,[],True,False
+rename_projects,graph_continuous,3,BIRCH,"['copper', 'silver']","According to the provided documents, Project BIRCH combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+rename_projects,ordinary_sequence,1,CEDAR,['copper'],Copper.,True,True,[],True,False
+rename_projects,ordinary_sequence,2,MAPLE,['silver'],silver,True,True,[],True,False
+rename_projects,ordinary_sequence,3,BIRCH,"['copper', 'silver']","According to the documents, Project BIRCH combines copper and silver.",True,True,[],True,False
+rename_suppliers,graph_shared,1,ORION,['copper'],Copper.,True,True,[],True,False
+rename_suppliers,graph_shared,2,LYRA,['silver'],Copper.,False,False,[],True,False
+rename_suppliers,graph_shared,3,NOVA,"['copper', 'silver']","According to the provided documents, Project NOVA combines copper supplied by GAMMA and silver supplied by DELTA.",True,True,[],True,False
+rename_suppliers,graph_continuous,1,ORION,['copper'],Copper.,True,True,[],True,False
+rename_suppliers,graph_continuous,2,LYRA,['silver'],Copper.,False,False,[],True,False
+rename_suppliers,graph_continuous,3,NOVA,"['copper', 'silver']","According to the provided documents, Project NOVA combines copper supplied by GAMMA and silver supplied by DELTA.",True,True,[],True,False
+rename_suppliers,ordinary_sequence,1,ORION,['copper'],Copper.,True,True,[],True,False
+rename_suppliers,ordinary_sequence,2,LYRA,['silver'],"According to Document 2, Project LYRA uses the material supplied by GAMMA, which is silver.",True,True,[],True,False
+rename_suppliers,ordinary_sequence,3,NOVA,"['copper', 'silver']","According to the documents, Project NOVA combines copper and silver.",True,True,[],True,False
+rename_materials,graph_shared,1,ORION,['tin'],Tin.,True,True,[],True,False
+rename_materials,graph_shared,2,LYRA,['zinc'],Tin.,False,False,[],True,False
+rename_materials,graph_shared,3,NOVA,"['tin', 'zinc']","According to the provided documents, Project NOVA combines tin supplied by ALPHA and zinc supplied by BETA.",True,True,[],True,False
+rename_materials,graph_continuous,1,ORION,['tin'],Tin.,True,True,[],True,False
+rename_materials,graph_continuous,2,LYRA,['zinc'],Zinc.,True,True,[],True,False
+rename_materials,graph_continuous,3,NOVA,"['tin', 'zinc']","According to the provided documents, NOVA combines tin and zinc.",True,True,[],True,False
+rename_materials,ordinary_sequence,1,ORION,['tin'],Tin,True,True,[],True,False
+rename_materials,ordinary_sequence,2,LYRA,['zinc'],"According to Document 2, Project LYRA uses the material supplied by BETA, which is zinc.",True,True,[],True,False
+rename_materials,ordinary_sequence,3,NOVA,"['tin', 'zinc']",Tin and zinc.,True,True,[],True,False
+reverse_sources,graph_shared,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_sources,graph_shared,2,LYRA,['silver'],Copper.,False,False,[],True,False
+reverse_sources,graph_shared,3,NOVA,"['copper', 'silver']","According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+reverse_sources,graph_continuous,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_sources,graph_continuous,2,LYRA,['silver'],Copper.,False,False,[],True,False
+reverse_sources,graph_continuous,3,NOVA,"['copper', 'silver']","According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+reverse_sources,ordinary_sequence,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_sources,ordinary_sequence,2,LYRA,['silver'],Silver.,True,True,[],True,False
+reverse_sources,ordinary_sequence,3,NOVA,"['copper', 'silver']",Copper and silver.,True,True,[],True,False
+reverse_targets,graph_shared,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_targets,graph_shared,2,LYRA,['silver'],Copper.,False,False,[],True,False
+reverse_targets,graph_shared,3,NOVA,"['copper', 'silver']","According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+reverse_targets,graph_continuous,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_targets,graph_continuous,2,LYRA,['silver'],Copper.,False,False,[],True,False
+reverse_targets,graph_continuous,3,NOVA,"['copper', 'silver']","According to the provided documents, NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+reverse_targets,ordinary_sequence,1,ORION,['copper'],Copper,True,True,[],True,False
+reverse_targets,ordinary_sequence,2,LYRA,['silver'],Silver.,True,True,[],True,False
+reverse_targets,ordinary_sequence,3,NOVA,"['copper', 'silver']","According to the documents, Project NOVA combines copper (supplied by ALPHA) and silver (supplied by BETA).",True,True,[],True,False
+reverse_both,graph_shared,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_both,graph_shared,2,LYRA,['silver'],Copper.,False,False,[],True,False
+reverse_both,graph_shared,3,NOVA,"['copper', 'silver']","According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+reverse_both,graph_continuous,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_both,graph_continuous,2,LYRA,['silver'],Copper.,False,False,[],True,False
+reverse_both,graph_continuous,3,NOVA,"['copper', 'silver']","According to the documents, NOVA combines copper supplied by ALPHA and silver supplied by BETA.",True,True,[],True,False
+reverse_both,ordinary_sequence,1,ORION,['copper'],Copper.,True,True,[],True,False
+reverse_both,ordinary_sequence,2,LYRA,['silver'],Silver,True,True,[],True,False
+reverse_both,ordinary_sequence,3,NOVA,"['copper', 'silver']","According to the documents, Project NOVA combines copper and silver.",True,True,[],True,False

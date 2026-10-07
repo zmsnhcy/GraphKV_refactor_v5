@@ -1,0 +1,4716 @@
+{
+  "audit": {
+    "chat_template": "{% for message in messages %}{% if message['role'] == 'system' %}{{ '<|system|>\n' + message['content'] + '\n' }}{% elif message['role'] == 'user' %}{{ '<|user|>\n' + message['content'] + '\n' }}{% elif message['role'] == 'assistant' %}{% if not loop.last %}{{ '<|assistant|>\n'  + message['content'] + eos_token + '\n' }}{% else %}{{ '<|assistant|>\n'  + message['content'] + eos_token }}{% endif %}{% endif %}{% if loop.last and add_generation_prompt %}{{ '<|assistant|>\n' }}{% endif %}{% endfor %}",
+    "special_tokens_map": {
+      "bos_token": "<|begin_of_text|>",
+      "eos_token": "<|end_of_text|>",
+      "pad_token": "<|end_of_text|>"
+    },
+    "tokenizer_eos_token": "<|end_of_text|>",
+    "tokenizer_eos_token_id": 128001,
+    "model_eos_token_id": 128001,
+    "model_bos_token_id": 128000
+  },
+  "settings": {
+    "model_path": "/home/lyh/hcy_work/GraphKV/models/Tulu3-Block-FT",
+    "repo_dir": "/home/lyh/hcy_work/GraphKV_refactor_v5",
+    "physical_gpu": "3",
+    "backend": "sdpa",
+    "max_new_tokens": 64,
+    "torch": "2.5.1+cu121",
+    "transformers": "4.50.0"
+  },
+  "source_texts": {
+    "4": "[Document 4] In this fictional dataset, ALPHA supplies copper. Its code is AX17.\n",
+    "5": "[Document 5] In this fictional dataset, BETA supplies silver. Its code is BY29.\n"
+  },
+  "target_texts": {
+    "1": "[Document 1] Project ORION uses the material supplied by ALPHA.\n",
+    "2": "[Document 2] Project LYRA uses the material supplied by BETA.\n",
+    "3": "[Document 3] Project NOVA combines the materials supplied by ALPHA and BETA.\n"
+  },
+  "graphs": {
+    "correct": [
+      [
+        "4",
+        "1"
+      ],
+      [
+        "4",
+        "3"
+      ],
+      [
+        "5",
+        "2"
+      ],
+      [
+        "5",
+        "3"
+      ]
+    ],
+    "no_edges": [],
+    "drop_4_to_1": [
+      [
+        "4",
+        "3"
+      ],
+      [
+        "5",
+        "2"
+      ],
+      [
+        "5",
+        "3"
+      ]
+    ],
+    "swap_1_2": [
+      [
+        "5",
+        "1"
+      ],
+      [
+        "4",
+        "2"
+      ],
+      [
+        "4",
+        "3"
+      ],
+      [
+        "5",
+        "3"
+      ]
+    ]
+  },
+  "formats": {
+    "legacy": {
+      "prefix": "<|user|>\nAnswer using the following documents. Give a short factual answer.\n",
+      "native": false
+    },
+    "native": {
+      "prefix": "<|user|>\nAnswer using the following documents. Give a short factual answer.\n",
+      "native": true
+    }
+  },
+  "records": [
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "all",
+      "project": "COMBINED",
+      "query": "\nQuestion: What material does ORION use, what material does LYRA use, and which two materials does NOVA combine?\n<|assistant|>\n",
+      "answer": "According to the provided documents:\n\n* ORION uses the material supplied by BETA, which is silver.\n* LYRA uses the material supplied by BETA, which is silver.\n* NOVA combines the materials supplied by ALPHA (copper) and BETA (silver).",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        1473,
+        9,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        15310,
+        627,
+        9,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        15310,
+        627,
+        9,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        320,
+        66,
+        18994,
+        8,
+        323,
+        426,
+        21352,
+        320,
+        83014,
+        570,
+        128001
+      ],
+      "raw_text": "According to the provided documents:\n\n* ORION uses the material supplied by BETA, which is silver.\n* LYRA uses the material supplied by BETA, which is silver.\n* NOVA combines the materials supplied by ALPHA (copper) and BETA (silver).<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 1.5551096759736538
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.12277435418218374,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.11507680453360081,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        17665,
+        555,
+        83897,
+        323,
+        15310,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.5258612092584372,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to the documents, ORION uses the material supplied by BETA, which is the material supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the documents, ORION uses the material supplied by BETA, which is the material supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.5131014985963702,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to the documents, Project LYRA uses the material supplied by BETA, which is named in [Document 2] as \"the material supplied by BETA\".",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        7086,
+        304,
+        510,
+        7676,
+        220,
+        17,
+        60,
+        439,
+        330,
+        1820,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        3343,
+        128001
+      ],
+      "raw_text": "According to the documents, Project LYRA uses the material supplied by BETA, which is named in [Document 2] as \"the material supplied by BETA\".<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.7252743951976299,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to the documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are \"material supplied by ALPHA\" and \"material supplied by BETA\".",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        11,
+        902,
+        527,
+        330,
+        8407,
+        17665,
+        555,
+        83897,
+        1,
+        323,
+        330,
+        8407,
+        17665,
+        555,
+        426,
+        21352,
+        3343,
+        128001
+      ],
+      "raw_text": "According to the documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are \"material supplied by ALPHA\" and \"material supplied by BETA\".<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.7407167199999094,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 1, ORION uses aluminum.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        16,
+        11,
+        2794,
+        1294,
+        5829,
+        25674,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 1, ORION uses aluminum.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.24997587967664003,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08417234756052494,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.29182412195950747,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.09056492708623409,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 3, LYRA uses the material supplied by ALPHA, which is copper.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        18,
+        11,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        11,
+        902,
+        374,
+        24166,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 3, LYRA uses the material supplied by ALPHA, which is copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.41901272162795067,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to Document 3, NOVA combines the materials supplied by ALPHA and BETA.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        18,
+        11,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 3, NOVA combines the materials supplied by ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.39445044193416834,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 1, ORION uses the material supplied by ALPHA.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        16,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 1, ORION uses the material supplied by ALPHA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.3301675831899047,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 2, Project LYRA uses the material supplied by ALPHA and BETA.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, Project LYRA uses the material supplied by ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.4160022819414735,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "ALPHA and BETA.",
+      "token_ids": [
+        984,
+        29322,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.14834059495478868,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 1, ORION uses aluminum.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        16,
+        11,
+        2794,
+        1294,
+        5829,
+        25674,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 1, ORION uses aluminum.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.25154478941112757,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.09131468366831541,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.29472684767097235,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.0874978257343173,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08772008400410414,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        17665,
+        555,
+        83897,
+        323,
+        15310,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.45845502614974976,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to the documents, ORION uses the material supplied by ALPHA and BETA, which is not specified in the given documents. However, it is mentioned that Project LYRA uses the material supplied by BETA, which is not the material used by ORION. Therefore, the answer cannot be determined based on the provided",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        539,
+        5300,
+        304,
+        279,
+        2728,
+        9477,
+        13,
+        4452,
+        11,
+        433,
+        374,
+        9932,
+        430,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        539,
+        279,
+        3769,
+        1511,
+        555,
+        2794,
+        1294,
+        13,
+        15636,
+        11,
+        279,
+        4320,
+        4250,
+        387,
+        11075,
+        3196,
+        389,
+        279,
+        3984
+      ],
+      "raw_text": "According to the documents, ORION uses the material supplied by ALPHA and BETA, which is not specified in the given documents. However, it is mentioned that Project LYRA uses the material supplied by BETA, which is not the material used by ORION. Therefore, the answer cannot be determined based on the provided",
+      "eos": false,
+      "hit_limit": true,
+      "seconds": 1.3082453487440944,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to the documents, Project LYRA uses the material supplied by BETA, which is named \"ORION\".",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        7086,
+        330,
+        878,
+        1294,
+        3343,
+        128001
+      ],
+      "raw_text": "According to the documents, Project LYRA uses the material supplied by BETA, which is named \"ORION\".<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.4956880044192076,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are ORION and the material supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        11,
+        902,
+        527,
+        2794,
+        1294,
+        323,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are ORION and the material supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.656051330268383,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 1, ORION uses aluminum.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        16,
+        11,
+        2794,
+        1294,
+        5829,
+        25674,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 1, ORION uses aluminum.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.24920816905796528,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08551736362278461,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.2947148149833083,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08669799845665693,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 2 and Document 3, Project LYRA uses the material supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        323,
+        12051,
+        220,
+        18,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2 and Document 3, Project LYRA uses the material supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.4606696888804436,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.4142405269667506,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to the documents, ORION uses the material supplied by ALPHA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        13,
+        128001
+      ],
+      "raw_text": "According to the documents, ORION uses the material supplied by ALPHA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.3066900987178087,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "LYRA uses the material supplied by BETA.",
+      "token_ids": [
+        9109,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "LYRA uses the material supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.23641087394207716,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "ALPHA and BETA.",
+      "token_ids": [
+        984,
+        29322,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.1457835305482149,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 1, ORION uses aluminum.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        16,
+        11,
+        2794,
+        1294,
+        5829,
+        25674,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 1, ORION uses aluminum.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.24960728455334902,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08481295686215162,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.28917472064495087,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "all",
+      "project": "COMBINED",
+      "query": "\nQuestion: What material does ORION use, what material does LYRA use, and which two materials does NOVA combine?\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, ORION uses copper, LYRA uses the material supplied by BETA (which is silver), and NOVA combines copper and silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        24166,
+        11,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        320,
+        8370,
+        374,
+        15310,
+        705,
+        323,
+        5782,
+        13114,
+        33511,
+        24166,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, ORION uses copper, LYRA uses the material supplied by BETA (which is silver), and NOVA combines copper and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.7023250823840499
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08696389105170965,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08967113588005304,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        17665,
+        555,
+        83897,
+        323,
+        15310,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.4552077827975154,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, ORION uses the material supplied by BETA, which is the material supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the documents, ORION uses the material supplied by BETA, which is the material supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.5135052613914013,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, Project LYRA uses the material supplied by BETA, which is the material supplied by ALPHA. Therefore, the material used by LYRA is the material supplied by BETA, which is not explicitly named in the documents. However, it can be inferred that the material is the one supplied by B",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        13,
+        15636,
+        11,
+        279,
+        3769,
+        1511,
+        555,
+        87105,
+        5726,
+        374,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        539,
+        21650,
+        7086,
+        304,
+        279,
+        9477,
+        13,
+        4452,
+        11,
+        433,
+        649,
+        387,
+        68695,
+        430,
+        279,
+        3769,
+        374,
+        279,
+        832,
+        17665,
+        555,
+        426
+      ],
+      "raw_text": "According to the documents, Project LYRA uses the material supplied by BETA, which is the material supplied by ALPHA. Therefore, the material used by LYRA is the material supplied by BETA, which is not explicitly named in the documents. However, it can be inferred that the material is the one supplied by B",
+      "eos": false,
+      "hit_limit": true,
+      "seconds": 1.3046280210837722,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are \"material supplied by ALPHA\" and \"material supplied by BETA\".",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        11,
+        902,
+        527,
+        330,
+        8407,
+        17665,
+        555,
+        83897,
+        1,
+        323,
+        330,
+        8407,
+        17665,
+        555,
+        426,
+        21352,
+        3343,
+        128001
+      ],
+      "raw_text": "According to the documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are \"material supplied by ALPHA\" and \"material supplied by BETA\".<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.71712233312428,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, ORION uses copper.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        24166,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, ORION uses copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.2532324520871043,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, LYRA uses silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        87105,
+        5726,
+        5829,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, LYRA uses silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.24781260639429092,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.28716850839555264,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.0884360820055008,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to Document 3, LYRA uses the material supplied by ALPHA, which is copper.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        18,
+        11,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        11,
+        902,
+        374,
+        24166,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 3, LYRA uses the material supplied by ALPHA, which is copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.4157873159274459,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to Document 3, Project NOVA combines the materials supplied by ALPHA and BETA.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        18,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 3, Project NOVA combines the materials supplied by ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.4229054572060704,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to Document 1, ORION uses the material supplied by ALPHA.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        16,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 1, ORION uses the material supplied by ALPHA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.332382925786078,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to Document 2, Project LYRA uses the material supplied by ALPHA and BETA.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, Project LYRA uses the material supplied by ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.41273784544318914,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.42083264142274857,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, ORION uses copper.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        24166,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, ORION uses copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.2500835405662656,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, LYRA uses silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        87105,
+        5726,
+        5829,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, LYRA uses silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.24979909975081682,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.2912025935947895,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08731780014932156,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.09095789026468992,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        17665,
+        555,
+        83897,
+        323,
+        15310,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines copper supplied by ALPHA and silver supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.46545720659196377,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, ORION uses the material supplied by ALPHA and BETA, which is not specified in the provided documents. However, it is mentioned that Project LYRA uses the material supplied by BETA, which is not the material used by ORION. Therefore, the answer cannot be determined based on the provided",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        539,
+        5300,
+        304,
+        279,
+        3984,
+        9477,
+        13,
+        4452,
+        11,
+        433,
+        374,
+        9932,
+        430,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        539,
+        279,
+        3769,
+        1511,
+        555,
+        2794,
+        1294,
+        13,
+        15636,
+        11,
+        279,
+        4320,
+        4250,
+        387,
+        11075,
+        3196,
+        389,
+        279,
+        3984
+      ],
+      "raw_text": "According to the documents, ORION uses the material supplied by ALPHA and BETA, which is not specified in the provided documents. However, it is mentioned that Project LYRA uses the material supplied by BETA, which is not the material used by ORION. Therefore, the answer cannot be determined based on the provided",
+      "eos": false,
+      "hit_limit": true,
+      "seconds": 1.3147462895140052,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, Project LYRA uses the material supplied by BETA, which is named as \"material supplied by BETA\" in Document 2.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        7086,
+        439,
+        330,
+        8407,
+        17665,
+        555,
+        426,
+        21352,
+        1,
+        304,
+        12051,
+        220,
+        17,
+        13,
+        128001
+      ],
+      "raw_text": "According to the documents, Project LYRA uses the material supplied by BETA, which is named as \"material supplied by BETA\" in Document 2.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.6798790609464049,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are ORION and the material supplied by BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        11,
+        902,
+        527,
+        2794,
+        1294,
+        323,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are ORION and the material supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.6610358031466603,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, ORION uses copper.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        24166,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, ORION uses copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.25212685391306877,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, LYRA uses silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        87105,
+        5726,
+        5829,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, LYRA uses silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.24740632437169552,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.2921808045357466,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "raw_text": "Copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.08723645564168692,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to [Document 1] and [Document 2], Project LYRA uses the material supplied by ALPHA, which is copper.",
+      "token_ids": [
+        11439,
+        311,
+        510,
+        7676,
+        220,
+        16,
+        60,
+        323,
+        510,
+        7676,
+        220,
+        17,
+        1145,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        11,
+        902,
+        374,
+        24166,
+        13,
+        128001
+      ],
+      "raw_text": "According to [Document 1] and [Document 2], Project LYRA uses the material supplied by ALPHA, which is copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.5877137174829841,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project NOVA combines materials supplied by ALPHA and BETA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, Project NOVA combines materials supplied by ALPHA and BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.395489864051342,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, ORION uses the material supplied by ALPHA.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        83897,
+        13,
+        128001
+      ],
+      "raw_text": "According to the documents, ORION uses the material supplied by ALPHA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.31651602778583765,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "LYRA uses the material supplied by BETA.",
+      "token_ids": [
+        9109,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        128001
+      ],
+      "raw_text": "LYRA uses the material supplied by BETA.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.22969798278063536,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are \"material supplied by ALPHA\" and \"material supplied by BETA\".",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        279,
+        7384,
+        17665,
+        555,
+        83897,
+        323,
+        426,
+        21352,
+        11,
+        902,
+        527,
+        330,
+        8407,
+        17665,
+        555,
+        83897,
+        1,
+        323,
+        330,
+        8407,
+        17665,
+        555,
+        426,
+        21352,
+        3343,
+        128001
+      ],
+      "raw_text": "According to the documents, Project NOVA combines the materials supplied by ALPHA and BETA, which are \"material supplied by ALPHA\" and \"material supplied by BETA\".<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.718567949719727,
+      "found": [],
+      "rough_pass": false
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, ORION uses copper.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        2794,
+        1294,
+        5829,
+        24166,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, ORION uses copper.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.2497489219531417,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, LYRA uses silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        87105,
+        5726,
+        5829,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to the provided documents, LYRA uses silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.24757665395736694,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to Document 2, NOVA combines aluminum and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5782,
+        13114,
+        33511,
+        25674,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "raw_text": "According to Document 2, NOVA combines aluminum and silver.<|end_of_text|>",
+      "eos": true,
+      "hit_limit": false,
+      "seconds": 0.2941724704578519,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": false
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper",
+      "token_ids": [
+        34,
+        18994,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "According to Document 2, Project LYRA uses the material supplied by BETA, which is silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "Copper and silver.",
+      "token_ids": [
+        34,
+        18994,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "COMBINED",
+      "query": "\nQuestion: What material does ORION use, what material does LYRA use, and which two materials does NOVA combine?\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project ORION uses copper, Project LYRA uses silver, and Project NOVA combines copper and silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        2794,
+        1294,
+        5829,
+        24166,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        15310,
+        11,
+        323,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n<|assistant|>\n",
+      "answer": "Silver.",
+      "token_ids": [
+        53443,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n<|assistant|>\n",
+      "answer": "Copper and silver.",
+      "token_ids": [
+        34,
+        18994,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "COMBINED",
+      "query": "\nQuestion: What material does ORION use, what material does LYRA use, and which two materials does NOVA combine?\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project ORION uses copper, Project LYRA uses silver, and Project NOVA combines copper and silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        2794,
+        1294,
+        5829,
+        24166,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        15310,
+        11,
+        323,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false
+    },
+    {
+      "format": "native",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper",
+      "token_ids": [
+        34,
+        18994,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to Document 2, Project LYRA uses the material supplied by BETA, which is silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        11,
+        902,
+        374,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to Document 3, Project NOVA combines copper and silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        18,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "sequential_source_first",
+      "view": "all",
+      "project": "COMBINED",
+      "query": "\nQuestion: What material does ORION use, what material does LYRA use, and which two materials does NOVA combine?\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project ORION uses copper, Project LYRA uses silver, and Project NOVA combines copper and silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        2794,
+        1294,
+        5829,
+        24166,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        15310,
+        11,
+        323,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false
+    },
+    {
+      "format": "native",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "Copper.",
+      "token_ids": [
+        34,
+        18994,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Answer with the material name only.\n\n<|assistant|>\n",
+      "answer": "According to Document 2, Project LYRA uses the material supplied by BETA. According to Document 5, BETA supplies silver. Therefore, LYRA uses silver.",
+      "token_ids": [
+        11439,
+        311,
+        12051,
+        220,
+        17,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        279,
+        3769,
+        17665,
+        555,
+        426,
+        21352,
+        13,
+        10771,
+        311,
+        12051,
+        220,
+        20,
+        11,
+        426,
+        21352,
+        17135,
+        15310,
+        13,
+        15636,
+        11,
+        87105,
+        5726,
+        5829,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "NOVA",
+      "query": "\nQuestion: Which two materials does NOVA combine? Answer with the material names only.\n\n<|assistant|>\n",
+      "answer": "According to the documents, Project NOVA combines copper (supplied by ALPHA) and silver (supplied by BETA).",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        9477,
+        11,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        320,
+        13066,
+        3523,
+        555,
+        83897,
+        8,
+        323,
+        15310,
+        320,
+        13066,
+        3523,
+        555,
+        426,
+        21352,
+        570,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false,
+      "found": [
+        "copper",
+        "silver"
+      ],
+      "rough_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "sequential_target_first",
+      "view": "all",
+      "project": "COMBINED",
+      "query": "\nQuestion: What material does ORION use, what material does LYRA use, and which two materials does NOVA combine?\n\n<|assistant|>\n",
+      "answer": "According to the provided documents, Project ORION uses copper, Project LYRA uses silver, and Project NOVA combines copper and silver.",
+      "token_ids": [
+        11439,
+        311,
+        279,
+        3984,
+        9477,
+        11,
+        5907,
+        2794,
+        1294,
+        5829,
+        24166,
+        11,
+        5907,
+        87105,
+        5726,
+        5829,
+        15310,
+        11,
+        323,
+        5907,
+        5782,
+        13114,
+        33511,
+        24166,
+        323,
+        15310,
+        13,
+        128001
+      ],
+      "eos": true,
+      "hit_limit": false
+    }
+  ],
+  "candidate_scores": [
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.770296096801758,
+        "mean_logp": -10.770296096801758,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.770296096801758
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.895296096801758,
+        "mean_logp": -9.895296096801758,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.895296096801758
+        ]
+      },
+      "copper_minus_silver": -0.875
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.247847557067871,
+        "mean_logp": -12.247847557067871,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.247847557067871
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.810347557067871,
+        "mean_logp": -9.810347557067871,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.810347557067871
+        ]
+      },
+      "copper_minus_silver": -2.4375
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.7738676071167,
+        "mean_logp": -10.7738676071167,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.7738676071167
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.5238676071167,
+        "mean_logp": -8.5238676071167,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.5238676071167
+        ]
+      },
+      "copper_minus_silver": -2.25
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.243626594543457,
+        "mean_logp": -12.243626594543457,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.243626594543457
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.993626594543457,
+        "mean_logp": -8.993626594543457,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.993626594543457
+        ]
+      },
+      "copper_minus_silver": -3.25
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.502022743225098,
+        "mean_logp": -11.502022743225098,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.502022743225098
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.314522743225098,
+        "mean_logp": -9.314522743225098,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.314522743225098
+        ]
+      },
+      "copper_minus_silver": -2.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.227083206176758,
+        "mean_logp": -13.227083206176758,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.227083206176758
+        ]
+      },
+      "silver": {
+        "sum_logp": -10.039583206176758,
+        "mean_logp": -10.039583206176758,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -10.039583206176758
+        ]
+      },
+      "copper_minus_silver": -3.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.576778411865234,
+        "mean_logp": -12.576778411865234,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.576778411865234
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.326778411865234,
+        "mean_logp": -9.326778411865234,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.326778411865234
+        ]
+      },
+      "copper_minus_silver": -3.25
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -14.689576148986816,
+        "mean_logp": -14.689576148986816,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -14.689576148986816
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.564576148986816,
+        "mean_logp": -9.564576148986816,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.564576148986816
+        ]
+      },
+      "copper_minus_silver": -5.125
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.49132251739502,
+        "mean_logp": -10.49132251739502,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.49132251739502
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.49132251739502,
+        "mean_logp": -8.49132251739502,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.49132251739502
+        ]
+      },
+      "copper_minus_silver": -2.0
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.69747257232666,
+        "mean_logp": -11.69747257232666,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.69747257232666
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.50997257232666,
+        "mean_logp": -8.50997257232666,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.50997257232666
+        ]
+      },
+      "copper_minus_silver": -3.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.502022743225098,
+        "mean_logp": -11.502022743225098,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.502022743225098
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.314522743225098,
+        "mean_logp": -9.314522743225098,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.314522743225098
+        ]
+      },
+      "copper_minus_silver": -2.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.227083206176758,
+        "mean_logp": -13.227083206176758,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.227083206176758
+        ]
+      },
+      "silver": {
+        "sum_logp": -10.039583206176758,
+        "mean_logp": -10.039583206176758,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -10.039583206176758
+        ]
+      },
+      "copper_minus_silver": -3.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.079971313476562,
+        "mean_logp": -11.079971313476562,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.079971313476562
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.704971313476562,
+        "mean_logp": -9.704971313476562,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.704971313476562
+        ]
+      },
+      "copper_minus_silver": -1.375
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.40003776550293,
+        "mean_logp": -13.40003776550293,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.40003776550293
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.65003776550293,
+        "mean_logp": -9.65003776550293,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.65003776550293
+        ]
+      },
+      "copper_minus_silver": -3.75
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.81865406036377,
+        "mean_logp": -10.81865406036377,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.81865406036377
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.63115406036377,
+        "mean_logp": -8.63115406036377,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.63115406036377
+        ]
+      },
+      "copper_minus_silver": -2.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.24379825592041,
+        "mean_logp": -13.24379825592041,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.24379825592041
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.99379825592041,
+        "mean_logp": -8.99379825592041,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.99379825592041
+        ]
+      },
+      "copper_minus_silver": -4.25
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.502022743225098,
+        "mean_logp": -11.502022743225098,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.502022743225098
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.314522743225098,
+        "mean_logp": -9.314522743225098,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.314522743225098
+        ]
+      },
+      "copper_minus_silver": -2.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.227083206176758,
+        "mean_logp": -13.227083206176758,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.227083206176758
+        ]
+      },
+      "silver": {
+        "sum_logp": -10.039583206176758,
+        "mean_logp": -10.039583206176758,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -10.039583206176758
+        ]
+      },
+      "copper_minus_silver": -3.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.345013618469238,
+        "mean_logp": -12.345013618469238,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.345013618469238
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.282513618469238,
+        "mean_logp": -9.282513618469238,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.282513618469238
+        ]
+      },
+      "copper_minus_silver": -3.0625
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -14.263045310974121,
+        "mean_logp": -14.263045310974121,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -14.263045310974121
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.388045310974121,
+        "mean_logp": -9.388045310974121,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.388045310974121
+        ]
+      },
+      "copper_minus_silver": -4.875
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.762420654296875,
+        "mean_logp": -11.762420654296875,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.762420654296875
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.012420654296875,
+        "mean_logp": -9.012420654296875,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.012420654296875
+        ]
+      },
+      "copper_minus_silver": -2.75
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.527029037475586,
+        "mean_logp": -13.527029037475586,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.527029037475586
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.089529037475586,
+        "mean_logp": -9.089529037475586,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.089529037475586
+        ]
+      },
+      "copper_minus_silver": -4.4375
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.502022743225098,
+        "mean_logp": -11.502022743225098,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.502022743225098
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.314522743225098,
+        "mean_logp": -9.314522743225098,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.314522743225098
+        ]
+      },
+      "copper_minus_silver": -2.1875
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.227083206176758,
+        "mean_logp": -13.227083206176758,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.227083206176758
+        ]
+      },
+      "silver": {
+        "sum_logp": -10.039583206176758,
+        "mean_logp": -10.039583206176758,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -10.039583206176758
+        ]
+      },
+      "copper_minus_silver": -3.1875
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.333401679992676,
+        "mean_logp": -10.333401679992676,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.333401679992676
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.833401679992676,
+        "mean_logp": -9.833401679992676,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.833401679992676
+        ]
+      },
+      "copper_minus_silver": -0.5
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.349753379821777,
+        "mean_logp": -11.349753379821777,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.349753379821777
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.224753379821777,
+        "mean_logp": -9.224753379821777,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.224753379821777
+        ]
+      },
+      "copper_minus_silver": -2.125
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.689969062805176,
+        "mean_logp": -10.689969062805176,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.689969062805176
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.502469062805176,
+        "mean_logp": -8.502469062805176,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.502469062805176
+        ]
+      },
+      "copper_minus_silver": -2.1875
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.374212265014648,
+        "mean_logp": -11.374212265014648,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.374212265014648
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.311712265014648,
+        "mean_logp": -8.311712265014648,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.311712265014648
+        ]
+      },
+      "copper_minus_silver": -3.0625
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.032069206237793,
+        "mean_logp": -11.032069206237793,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.032069206237793
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.032069206237793,
+        "mean_logp": -9.032069206237793,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.032069206237793
+        ]
+      },
+      "copper_minus_silver": -2.0
+    },
+    {
+      "format": "native",
+      "graph": "correct",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.274229049682617,
+        "mean_logp": -13.274229049682617,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.274229049682617
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.711729049682617,
+        "mean_logp": -9.711729049682617,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.711729049682617
+        ]
+      },
+      "copper_minus_silver": -3.5625
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.352670669555664,
+        "mean_logp": -12.352670669555664,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.352670669555664
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.227670669555664,
+        "mean_logp": -9.227670669555664,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.227670669555664
+        ]
+      },
+      "copper_minus_silver": -3.125
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -14.347390174865723,
+        "mean_logp": -14.347390174865723,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -14.347390174865723
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.409890174865723,
+        "mean_logp": -9.409890174865723,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.409890174865723
+        ]
+      },
+      "copper_minus_silver": -4.9375
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.25490665435791,
+        "mean_logp": -10.25490665435791,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.25490665435791
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.50490665435791,
+        "mean_logp": -8.50490665435791,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.50490665435791
+        ]
+      },
+      "copper_minus_silver": -1.75
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.070733070373535,
+        "mean_logp": -11.070733070373535,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.070733070373535
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.133233070373535,
+        "mean_logp": -8.133233070373535,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.133233070373535
+        ]
+      },
+      "copper_minus_silver": -2.9375
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.032069206237793,
+        "mean_logp": -11.032069206237793,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.032069206237793
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.032069206237793,
+        "mean_logp": -9.032069206237793,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.032069206237793
+        ]
+      },
+      "copper_minus_silver": -2.0
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.274229049682617,
+        "mean_logp": -13.274229049682617,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.274229049682617
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.711729049682617,
+        "mean_logp": -9.711729049682617,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.711729049682617
+        ]
+      },
+      "copper_minus_silver": -3.5625
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.81198787689209,
+        "mean_logp": -10.81198787689209,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.81198787689209
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.62448787689209,
+        "mean_logp": -9.62448787689209,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.62448787689209
+        ]
+      },
+      "copper_minus_silver": -1.1875
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.42298412322998,
+        "mean_logp": -12.42298412322998,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.42298412322998
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.17298412322998,
+        "mean_logp": -9.17298412322998,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.17298412322998
+        ]
+      },
+      "copper_minus_silver": -3.25
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -10.95566177368164,
+        "mean_logp": -10.95566177368164,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -10.95566177368164
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.83066177368164,
+        "mean_logp": -8.83066177368164,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.83066177368164
+        ]
+      },
+      "copper_minus_silver": -2.125
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.288188934326172,
+        "mean_logp": -12.288188934326172,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.288188934326172
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.225688934326172,
+        "mean_logp": -8.225688934326172,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.225688934326172
+        ]
+      },
+      "copper_minus_silver": -4.0625
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.032069206237793,
+        "mean_logp": -11.032069206237793,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.032069206237793
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.032069206237793,
+        "mean_logp": -9.032069206237793,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.032069206237793
+        ]
+      },
+      "copper_minus_silver": -2.0
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.274229049682617,
+        "mean_logp": -13.274229049682617,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.274229049682617
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.711729049682617,
+        "mean_logp": -9.711729049682617,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.711729049682617
+        ]
+      },
+      "copper_minus_silver": -3.5625
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.205137252807617,
+        "mean_logp": -12.205137252807617,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.205137252807617
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.017637252807617,
+        "mean_logp": -9.017637252807617,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.017637252807617
+        ]
+      },
+      "copper_minus_silver": -3.1875
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "all",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.722555160522461,
+        "mean_logp": -13.722555160522461,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.722555160522461
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.785055160522461,
+        "mean_logp": -8.785055160522461,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.785055160522461
+        ]
+      },
+      "copper_minus_silver": -4.9375
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.338685989379883,
+        "mean_logp": -11.338685989379883,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.338685989379883
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.588685989379883,
+        "mean_logp": -8.588685989379883,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.588685989379883
+        ]
+      },
+      "copper_minus_silver": -2.75
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "targets_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -12.567140579223633,
+        "mean_logp": -12.567140579223633,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -12.567140579223633
+        ]
+      },
+      "silver": {
+        "sum_logp": -8.129640579223633,
+        "mean_logp": -8.129640579223633,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -8.129640579223633
+        ]
+      },
+      "copper_minus_silver": -4.4375
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "ORION",
+      "query": "\nQuestion: What material does ORION use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -11.032069206237793,
+        "mean_logp": -11.032069206237793,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -11.032069206237793
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.032069206237793,
+        "mean_logp": -9.032069206237793,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.032069206237793
+        ]
+      },
+      "copper_minus_silver": -2.0
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "view": "sources_only",
+      "project": "LYRA",
+      "query": "\nQuestion: What material does LYRA use? Choose exactly one: copper or silver. Answer:\n\n<|assistant|>\n",
+      "copper": {
+        "sum_logp": -13.274229049682617,
+        "mean_logp": -13.274229049682617,
+        "token_ids": [
+          24166
+        ],
+        "per_token_logp": [
+          -13.274229049682617
+        ]
+      },
+      "silver": {
+        "sum_logp": -9.711729049682617,
+        "mean_logp": -9.711729049682617,
+        "token_ids": [
+          15310
+        ],
+        "per_token_logp": [
+          -9.711729049682617
+        ]
+      },
+      "copper_minus_silver": -3.5625
+    }
+  ],
+  "locality": [
+    {
+      "format": "legacy",
+      "graph": "no_edges",
+      "node_deltas": {
+        "4": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "5": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "1": {
+          "max_abs": 31.2265625,
+          "mean_abs": 0.41649678188065686
+        },
+        "2": {
+          "max_abs": 31.1015625,
+          "mean_abs": 0.4086045680451207
+        },
+        "3": {
+          "max_abs": 30.8515625,
+          "mean_abs": 0.4077500485194226
+        }
+      },
+      "unaffected_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "drop_4_to_1",
+      "node_deltas": {
+        "4": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "5": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "1": {
+          "max_abs": 31.2265625,
+          "mean_abs": 0.41649678188065686
+        },
+        "2": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "3": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        }
+      },
+      "unaffected_pass": true
+    },
+    {
+      "format": "legacy",
+      "graph": "swap_1_2",
+      "node_deltas": {
+        "4": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "5": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "1": {
+          "max_abs": 5.9375,
+          "mean_abs": 0.15972751554412146
+        },
+        "2": {
+          "max_abs": 5.9375,
+          "mean_abs": 0.17222158234653762
+        },
+        "3": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        }
+      },
+      "unaffected_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "no_edges",
+      "node_deltas": {
+        "4": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "5": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "1": {
+          "max_abs": 31.2265625,
+          "mean_abs": 0.41649678188065686
+        },
+        "2": {
+          "max_abs": 31.1015625,
+          "mean_abs": 0.4086045680451207
+        },
+        "3": {
+          "max_abs": 30.8515625,
+          "mean_abs": 0.4077500485194226
+        }
+      },
+      "unaffected_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "drop_4_to_1",
+      "node_deltas": {
+        "4": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "5": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "1": {
+          "max_abs": 31.2265625,
+          "mean_abs": 0.41649678188065686
+        },
+        "2": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "3": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        }
+      },
+      "unaffected_pass": true
+    },
+    {
+      "format": "native",
+      "graph": "swap_1_2",
+      "node_deltas": {
+        "4": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "5": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        },
+        "1": {
+          "max_abs": 5.9375,
+          "mean_abs": 0.15972751554412146
+        },
+        "2": {
+          "max_abs": 5.9375,
+          "mean_abs": 0.17222158234653762
+        },
+        "3": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0
+        }
+      },
+      "unaffected_pass": true
+    }
+  ],
+  "permutation": [
+    {
+      "format": "legacy",
+      "max_abs_logits": 0.3125,
+      "argmax_a": 34,
+      "argmax_b": 34
+    },
+    {
+      "format": "native",
+      "max_abs_logits": 0.390625,
+      "argmax_a": 34,
+      "argmax_b": 34
+    }
+  ]
+}
