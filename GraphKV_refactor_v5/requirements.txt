@@ -1,0 +1,5 @@
+torch==2.5.1
+transformers==4.50.0
+pytest>=8,<10
+# For loading local 8B models with device_map: pip install accelerate
+# Optional Linux GPU backend: flash-attn==2.7.4.post1

@@ -1,0 +1,11 @@
+{
+  "v4_target_range": [
+    3,
+    9
+  ],
+  "v4_query_start": 6,
+  "v4_forward_logits_requires_grad": true,
+  "v4_clone_seen_tokens": 0,
+  "actual_source_cache_length": 3,
+  "v4_late_longer_source_error": "RuntimeError('source span changed after Graph-KV layout was frozen')"
+}

@@ -1,0 +1,34 @@
+test_atomic_malformed_update (test_policy_guard.GuardTests) ... ok
+test_encoded_dependency_cannot_change (test_policy_guard.GuardTests) ... ok
+test_new_target_edges_allowed_before_seal (test_policy_guard.GuardTests) ... ok
+test_reassignment_and_layout_changes_detected (test_policy_guard.GuardTests) ... ok
+test_seal_blocks_mutating_methods (test_policy_guard.GuardTests) ... ok
+test_tensor_inplace_change_detected (test_policy_guard.GuardTests) ... ok
+test_tensor_replacement_detected (test_policy_guard.GuardTests) ... ok
+test_unsealed_query_rejected (test_policy_guard.GuardTests) ... ok
+test_ambiguous_alias (test_policy_guard.PolicyTests) ... ok
+test_bad_graphs (test_policy_guard.PolicyTests) ... ok
+test_broad_questions_fall_back (test_policy_guard.PolicyTests) ... ok
+test_direct_source (test_policy_guard.PolicyTests) ... ok
+test_empty_question (test_policy_guard.PolicyTests) ... ok
+test_lyra_closure (test_policy_guard.PolicyTests) ... ok
+test_malformed_edge_and_alias_containers (test_policy_guard.PolicyTests) ... ok
+test_multisource_closure (test_policy_guard.PolicyTests) ... ok
+test_revision_tracks_content_and_edges (test_policy_guard.PolicyTests) ... ok
+test_scoring_does_not_claim_relations (test_policy_guard.PolicyTests) ... ok
+test_synthetic_evidence_coverage (test_policy_guard.PolicyTests) ... ok
+test_unknown_and_word_boundaries (test_policy_guard.PolicyTests) ... ok
+test_all_paths_leave_original_cache_unchanged (test_torch_integration.TorchIntegrationTests) ... ok
+test_fallback_is_sequential_and_uses_all_nodes (test_torch_integration.TorchIntegrationTests) ... ok
+test_full_mask_matches_adapter (test_torch_integration.TorchIntegrationTests) ... ok
+test_graph_change_and_stale_plan_are_rejected (test_torch_integration.TorchIntegrationTests) ... ok
+test_masked_subset_matches_physical_selection (test_torch_integration.TorchIntegrationTests) ... ok
+test_model_update_and_cache_inplace_write_are_rejected (test_torch_integration.TorchIntegrationTests) ... ok
+test_over_budget_never_calls_model (test_torch_integration.TorchIntegrationTests) ... ok
+test_sequential_cache_matches_full_recompute (test_torch_integration.TorchIntegrationTests) ... ok
+test_snapshot_matches_original_v5 (test_torch_integration.TorchIntegrationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.358s
+
+OK

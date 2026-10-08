@@ -1,0 +1,44 @@
+GraphKV research-0.1 local validation
+Run: 2026-10-07T17:03:49.978031+08:00
+Python: 3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]
+Executed and passed: 20
+Skipped: 9 (torch/transformers unavailable)
+Python files syntax checked: 7
+Notebook code cells syntax checked: 10
+No Tulu3 inference was performed. No tensor integration validation is claimed.
+Notebook outputs are intentionally empty and must be generated on the user server.
+
+test_atomic_malformed_update (test_policy_guard.GuardTests.test_atomic_malformed_update) ... ok
+test_encoded_dependency_cannot_change (test_policy_guard.GuardTests.test_encoded_dependency_cannot_change) ... ok
+test_new_target_edges_allowed_before_seal (test_policy_guard.GuardTests.test_new_target_edges_allowed_before_seal) ... ok
+test_reassignment_and_layout_changes_detected (test_policy_guard.GuardTests.test_reassignment_and_layout_changes_detected) ... ok
+test_seal_blocks_mutating_methods (test_policy_guard.GuardTests.test_seal_blocks_mutating_methods) ... ok
+test_tensor_inplace_change_detected (test_policy_guard.GuardTests.test_tensor_inplace_change_detected) ... ok
+test_tensor_replacement_detected (test_policy_guard.GuardTests.test_tensor_replacement_detected) ... ok
+test_unsealed_query_rejected (test_policy_guard.GuardTests.test_unsealed_query_rejected) ... ok
+test_ambiguous_alias (test_policy_guard.PolicyTests.test_ambiguous_alias) ... ok
+test_bad_graphs (test_policy_guard.PolicyTests.test_bad_graphs) ... ok
+test_broad_questions_fall_back (test_policy_guard.PolicyTests.test_broad_questions_fall_back) ... ok
+test_direct_source (test_policy_guard.PolicyTests.test_direct_source) ... ok
+test_empty_question (test_policy_guard.PolicyTests.test_empty_question) ... ok
+test_lyra_closure (test_policy_guard.PolicyTests.test_lyra_closure) ... ok
+test_malformed_edge_and_alias_containers (test_policy_guard.PolicyTests.test_malformed_edge_and_alias_containers) ... ok
+test_multisource_closure (test_policy_guard.PolicyTests.test_multisource_closure) ... ok
+test_revision_tracks_content_and_edges (test_policy_guard.PolicyTests.test_revision_tracks_content_and_edges) ... ok
+test_scoring_does_not_claim_relations (test_policy_guard.PolicyTests.test_scoring_does_not_claim_relations) ... ok
+test_synthetic_evidence_coverage (test_policy_guard.PolicyTests.test_synthetic_evidence_coverage) ... ok
+test_unknown_and_word_boundaries (test_policy_guard.PolicyTests.test_unknown_and_word_boundaries) ... ok
+test_all_paths_leave_original_cache_unchanged (test_torch_integration.TorchIntegrationTests.test_all_paths_leave_original_cache_unchanged) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_fallback_is_sequential_and_uses_all_nodes (test_torch_integration.TorchIntegrationTests.test_fallback_is_sequential_and_uses_all_nodes) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_full_mask_matches_adapter (test_torch_integration.TorchIntegrationTests.test_full_mask_matches_adapter) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_graph_change_and_stale_plan_are_rejected (test_torch_integration.TorchIntegrationTests.test_graph_change_and_stale_plan_are_rejected) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_masked_subset_matches_physical_selection (test_torch_integration.TorchIntegrationTests.test_masked_subset_matches_physical_selection) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_model_update_and_cache_inplace_write_are_rejected (test_torch_integration.TorchIntegrationTests.test_model_update_and_cache_inplace_write_are_rejected) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_over_budget_never_calls_model (test_torch_integration.TorchIntegrationTests.test_over_budget_never_calls_model) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_sequential_cache_matches_full_recompute (test_torch_integration.TorchIntegrationTests.test_sequential_cache_matches_full_recompute) ... skipped 'torch/transformers unavailable: integration NOT executed'
+test_snapshot_matches_original_v5 (test_torch_integration.TorchIntegrationTests.test_snapshot_matches_original_v5) ... skipped 'torch/transformers unavailable: integration NOT executed'
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.033s
+
+OK (skipped=9)

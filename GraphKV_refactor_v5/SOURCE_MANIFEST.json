@@ -1,0 +1,34 @@
+{
+  "upstream_url": "https://github.com/Graph-COM/GraphKV",
+  "upstream_commit": "ba01bbcc98fc9a352582dd1e75ab88fa6cac0dfb",
+  "inputs": {
+    "graph_kv_cache.py": {
+      "path": "C:\\Users\\HBUTH\\Desktop\\GraphKV_refactor_bundle\\mnt\\data\\GraphKV_refactor_v4\\graph_kv_cache.py",
+      "sha256": "9280864add2f11e8d4df5913ac80b3b250d52e1b92e85f82fd9bdeb4eeb1a843"
+    },
+    "graph_kv_adapter.py": {
+      "path": "C:\\Users\\HBUTH\\Desktop\\GraphKV_refactor_bundle\\mnt\\data\\GraphKV_refactor_v4\\graph_kv_adapter.py",
+      "sha256": "a5fa86a12da056c0a4a13738518503474c52fd23ecbb2e82301a4832ebbb4a60"
+    },
+    "pcw.py": {
+      "path": "C:\\Users\\HBUTH\\Desktop\\GraphKV_refactor_bundle\\mnt\\data\\GraphKV_refactor_v4\\pcw.py",
+      "sha256": "bec47a5693682008ecd80742d0209008fe53f3b18649e0d36b8c53dd8584ccce"
+    },
+    "pcw_parallel.py": {
+      "path": "C:\\Users\\HBUTH\\Desktop\\GraphKV_refactor_bundle\\mnt\\data\\GraphKV_refactor_v4\\pcw_parallel.py",
+      "sha256": "bf78d1a22b3940a6f2c083c6d3949adcc10210eda5be5354381f744957baadba"
+    },
+    "GraphKV_position_ablation.ipynb": {
+      "path": "C:\\Users\\HBUTH\\Desktop\\GraphKV_position_ablation.ipynb",
+      "sha256": "f1990a45e70a06160710eb1f059a9fee78296ced97de9fc90ac9f5f017d23c6b"
+    },
+    "GraphKV_single_gpu_diagnose_v4.ipynb": {
+      "path": "C:\\Users\\HBUTH\\Desktop\\GraphKV_single_gpu_diagnose_v4.ipynb",
+      "sha256": "fb02e206320e2a8498ea08485acb1b0277a55bfcbc4932bb9c44332425de7a74"
+    },
+    "2506.07334v2.pdf": {
+      "path": "C:\\Users\\HBUTH\\Desktop\\2506.07334v2.pdf",
+      "sha256": "a112bd50c4246175c8431b74465b714ef3d7f68692031e3262b397f0bd34ac7a"
+    }
+  }
+}
